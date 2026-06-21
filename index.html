@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="app">
+
+    </div>
+
     <div class="game-container">
         <!-- Cabeçalho -->
         <div class="header">
@@ -57,5 +61,11 @@
     </div>
 
     <script src="script.js"></script>
+    <script type="module" src="./src/main.js"></script>
+      <script type="module">
+    import { createButton } from './src/Components/Button/button.js';
+    const btn = createButton({ label: 'Olá', onClick: () => alert('Oi!') });
+    document.getElementById('app').appendChild(btn);
+  </script>
 </body>
 </html>
