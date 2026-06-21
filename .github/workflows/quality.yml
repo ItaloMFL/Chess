@@ -1,0 +1,30 @@
+#   Linters são ferramentas que analisam o código em busca de erros de 
+# sintexes, más na prática e incosistências de estilo. Eles são os primeiros testes automatizados.
+name: Code Quality
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint CSS
+        run: npx stylelint "src/**/*.css"
+
+      - name: Lint JavaScript
+        run: npx eslint "src/**/*.js"
+
+      - name: Lint HTML
+        run: npx htmlhint "public/*.html"
