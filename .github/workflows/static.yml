@@ -1,0 +1,56 @@
+# Nome do Workflow
+name: Deploy static content to Pages
+
+# Eventos que disparam o Workflow
+on:
+  # 1. Executa automaticamente quando houver um 'push' (envio de código) para a branch 'main'
+  push:
+    branches: ["main"]
+
+  # 2. Permite executar manualmente pelo painel do GitHub (Aba 'Actions')
+  workflow_dispatch:
+
+# Permissões do token GITHUB_TOKEN
+permissions:
+  contents: read      # Lê o conteúdo do repositório
+  pages: write        # Escreve no ambiente do GitHub Pages
+  id-token: write     # Permite autenticação segura com o Pages
+
+# Controle de concorrência (evita filas desnecessárias)
+concurrency:
+  group: "pages"      # Agrupa todas as execuções de Pages
+  cancel-in-progress: false # Não cancela execuções em andamento (segurança para produção)
+
+# Jobs (trabalhos) a serem executados
+jobs:
+  # Job de deploy (único, pois é só publicar arquivos)
+  deploy:
+    # Define o ambiente como 'github-pages' para pegar a URL gerada
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # URL pública do site
+
+    # Servidor onde o job vai rodar (Ubuntu Linux)
+    runs-on: ubuntu-latest
+
+    # Passos (steps) do job
+    steps:
+      # 1. Baixa (Checkout) o código fonte do repositório
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Configura as ferramentas e metadados do GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 3. Faz o upload de todos os arquivos da pasta raiz ('.') como artefato
+      #    Isso empacota o site para ser enviado ao Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'      # <-- Atenção: aqui sobe TODA a pasta raiz
+
+      # 4. Publica (Deploy) o artefato no GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
