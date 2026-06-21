@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>♚ Chess Royale</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Cabeçalho -->
+        <div class="header">
+            <div class="logo-area">
+                <span class="logo-icon">♚</span>
+                <span class="logo-text">Chess<span>Royale</span></span>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="status-bar">
+            <div class="turn-indicator">
+                <span class="turn-dot white" id="turnDot"></span>
+                <span id="turnText">Sua vez</span>
+            </div>
+            <div class="status-message" id="statusMessage">Jogo em andamento</div>
+        </div>
+
+        <!-- Dificuldade / Winrate -->
+        <div class="difficulty-section">
+            <span class="difficulty-label">🤖 Winrate do Bot</span>
+            <div class="difficulty-group" id="difficultyGroup">
+                <button class="diff-btn" data-diff="0">10% <span class="winrate-pct">Iniciante</span></button>
+                <button class="diff-btn" data-diff="1">25% <span class="winrate-pct">Fácil</span></button>
+                <button class="diff-btn active" data-diff="2">50% <span class="winrate-pct">Médio</span></button>
+                <button class="diff-btn" data-diff="3">75% <span class="winrate-pct">Difícil</span></button>
+                <button class="diff-btn" data-diff="4">90% <span class="winrate-pct">Expert</span></button>
+            </div>
+        </div>
+
+        <!-- Tabuleiro -->
+        <div class="board-wrapper">
+            <div class="board" id="board"></div>
+        </div>
+
+        <!-- Peças capturadas -->
+        <div class="captured-area">
+            <div class="captured-group" id="capturedWhite"><span class="captured-label">Capturadas:</span></div>
+            <div class="captured-group" id="capturedBlack"><span class="captured-label">Capturadas:</span></div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controls">
+            <button class="ctrl-btn primary" id="newGameBtn">♔ Novo Jogo</button>
+            <button class="ctrl-btn" id="flipBoardBtn">🔄 Virar Tabuleiro</button>
+            <button class="ctrl-btn" id="undoBtn">↩ Desfazer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
