@@ -8,24 +8,21 @@
 
     <!-- CSS será injetado pelo build ou importado via JS -->
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/src/Styles/global.css">
 
+    <!-- 1. Estilos base ou de terceiros (ex: Bootstrap, Normalize) -->
+    <link rel="stylesheet" href="/src/Styles/reset.css">
+
+    <!-- 2. Estilos globais do seu projeto -->
+    <link rel="stylesheet" href="/src/Styles/global.css">
+    
 </head>
 
 <body>
     <div id="app">
         <!-- A UI será renderizada aqui pelo JavaScript -->
+        
+        
     </div>
-
-    <body onload="rola(); RandomTextColor()">
-        <div id="lugar"></div>
-    </body>
-    <!-- <script type="module" src="/src/main.js"></script>
-      <script type="module">
-    import { createButton } from './src/Components/Button/button.js';
-    const btn = createButton({ label: 'Olá', onClick: () => alert('Oi!') });
-    document.getElementById('app').appendChild(btn);
-  </script> -->
 </body>
 
 <script type="module" src="/src/main.js"></script>
