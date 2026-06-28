@@ -18,5 +18,3 @@ export function createButton({ text, variant = 'primary', onClick = null}) {
   
   return button;
 }
-
-export { createButton }
